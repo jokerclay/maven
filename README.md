@@ -116,7 +116,7 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
    step1: write a dependencies tag in your `pom.xml` file.
    ```xml
    <dependencies>
-
+   
     </dependencies>
    ```
    step2:go to https://mvnrepository.com/ find the dependency you want to use
@@ -145,3 +145,9 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
 
 
 3. **Transitive Dependencies**
+
+   ```
+
+
+TODO:
+https://www.youtube.com/watch?v=JhSBS2OpGdU
