@@ -145,9 +145,150 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
 
 
 3. **Transitive Dependencies**
+ - if you check the `Dependencies`
+ - you can see the dependencies's depenceies
+ - Over the time, the dependencies will be mess
 
-   ```
+**Eg** add another dependency
+```xml
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.7</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+```
+
+- then take a look at the dependencies,
+- you can see there is same dependencies  `junit`
+[![OZib36.png](https://s1.ax1x.com/2022/05/04/OZib36.png)](https://imgtu.com/i/OZib36)
+* we can set as following, to fix this problem
+```xml
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.8.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>2.6.7</version>
+            <scope>test</scope>
+            
+<!--            added 'exclusions' tag 'exclusion' tag
+                and groupId
+                to ensure which one we are using
+                and make sure the following are in the  dependency you are using
+-->
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                </exclusions>
+
+        </dependency>
+    </dependencies>
+```
 
 
-TODO:
-https://www.youtube.com/watch?v=JhSBS2OpGdU
+4. **SnapShot and Release Dependences**
+
+- SnapShot 
+  - created when software is under development
+  - unstable
+- Release 
+  - create after the software is developed and ready to be released 
+  - Stable
+
+4. **Dependency scope**
+   - we can contorl the dependencies's visblity using dependencies
+   - There 5 types of scope that maven have
+        1. Complie
+           - available only at compile time inside classpath
+        2. Provide
+           - provide by JDK or runtime, available at compile time but not runtime
+        3. Runtime
+           - available at run time but not compile time 
+        4. Test
+           - available at runnnig and writing tests.
+        5. System
+           - Path ot the JAR should be provided manually using `<systemPath>`
+
+5. **Repositories**
+- Local repositories
+  - Folder inside the machine runnnig Maven
+  - `<User-Home>/.m2`
+- Remote repositories
+  - remote website where can download dependencies
+  - Eg. Maven Website Artifactory or nexus
+
+```xml
+    <repositories>
+        <repository>
+            <id>my-internal-site</id>
+            <url>http://myserver/repo</url>
+        </repository>
+    </repositories>
+```
+
+
+6. **Build Lifecycle**
+   [![OZV760.png](https://s1.ax1x.com/2022/05/04/OZV760.png)](https://imgtu.com/i/OZV760)
+* Three steps:
+  1. default
+     1. validate:Verifies `pom.xml` is validate or not
+     2. complie: Complie the source code
+     3. Test: Runs the unit tests inside project  
+     4. Package: packageing the source code into an Artifact
+     5. Intergrtion-Test: execuse the Intergration Tests  
+     6. Install install the created package into our local repository
+     7. Deploy: deploys created package to the remote repository
+  2. clean
+     `maven clean install`
+  3. site
+
+
+
+7. **Plugins and Goals**
+- Plugins enables us to return the lifecycle phases in our Maven Project
+- Each Plugin is associated with a `GOAL`, which is linked to the lifecycle phase(ex:complie)
+- Plugins can be defined inside `<plugin>` section, under `<bulid>` tag
+
+8. **Maven Complie Plugin**
+    * complie our java files, similar to running `javac <java-class-name>`
+  * we can add plugins as following, we are using `maven-compiler-plugin` here
+  ```xml
+      <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+            </plugin>
+
+        </plugins>
+
+    </build>
+  ```
+  * we can added a class and `maven-compiler-plugin` will complie it and put it in`target` folder
+[![OZKUmt.png](https://s1.ax1x.com/2022/05/04/OZKUmt.png)](https://imgtu.com/i/OZKUmt)
+
