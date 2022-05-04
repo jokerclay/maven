@@ -290,5 +290,8 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
     </build>
   ```
   * we can added a class and `maven-compiler-plugin` will complie it and put it in`target` folder
+  * command `mvn compiler:compile`
 [![OZKUmt.png](https://s1.ax1x.com/2022/05/04/OZKUmt.png)](https://imgtu.com/i/OZKUmt)
+* we can also test it using ` mvn compiler:testCompile`
+[![OZMav9.png](https://s1.ax1x.com/2022/05/05/OZMav9.png)](https://imgtu.com/i/OZMav9)
 
