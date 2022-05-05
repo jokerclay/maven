@@ -295,3 +295,65 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
 * we can also test it using ` mvn compiler:testCompile`
 [![OZMav9.png](https://s1.ax1x.com/2022/05/05/OZMav9.png)](https://imgtu.com/i/OZMav9)
 
+* and you can also use `maven-compiler-plugin` on the right side
+  But it will failed, because the default version JDK in IntelliJ is `1.7`
+  [![OZMg8e.png](https://s1.ax1x.com/2022/05/05/OZMg8e.png)](https://imgtu.com/i/OZMg8e)
+* we can add configuration to fix this problem
+[![OmUApR.png](https://s1.ax1x.com/2022/05/05/OmUApR.png)](https://imgtu.com/i/OmUApR)
+9. **Maven Surefire Plugin**
+  - Runs Unit tests inside our project, also generates Test report
+  ```xml
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+  ```
+  - once you add the plugin to your project, you can run it in your terminal and type `mvn clean test`
+  - And it will get you a report in your target folder. 
+
+10. **Maven install Plugin**
+- packages sourcen code into a artifact and installs it into the local repository
+
+```xml
+          <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+            </plugin>
+```
+
+[![Omwlh4.png](https://s1.ax1x.com/2022/05/05/Omwlh4.png)](https://imgtu.com/i/Omwlh4)
+
+
+11. **Maven deploy Plugin**
+- deploy the created Artifact into the remote repository
+
+```xml
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+```
+
+12. **Maven moudule Projects**
+[![Om0xdf.png](https://s1.ax1x.com/2022/05/05/Om0xdf.png)](https://imgtu.com/i/Om0xdf)
+
+- create a new moudule
+[![OmB3O1.png](https://s1.ax1x.com/2022/05/05/OmB3O1.png)](https://imgtu.com/i/OmB3O1)
+[![OmDA9e.png](https://s1.ax1x.com/2022/05/05/OmDA9e.png)](https://imgtu.com/i/OmDA9e)
+- you can see the `child-project-1` added into the `pom.xml` in the `root directory`
+[![OmrBZt.png](https://s1.ax1x.com/2022/05/05/OmrBZt.png)](https://imgtu.com/i/OmrBZt)
+- and in the `child-project-1` `pom.xml` add `maven-demo` as `parent`
+[![OmsllQ.png](https://s1.ax1x.com/2022/05/05/OmsllQ.png)](https://imgtu.com/i/OmsllQ)
+
+
+
+
+
+
+
+
+
+
