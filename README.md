@@ -347,13 +347,19 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
 [![OmrBZt.png](https://s1.ax1x.com/2022/05/05/OmrBZt.png)](https://imgtu.com/i/OmrBZt)
 - and in the `child-project-1` `pom.xml` add `maven-demo` as `parent`
 [![OmsllQ.png](https://s1.ax1x.com/2022/05/05/OmsllQ.png)](https://imgtu.com/i/OmsllQ)
+- and we can add more child projects in the project, in this case we add three child projects in the same way into the project as following.
+[![OlWP29.png](https://s1.ax1x.com/2022/05/08/OlWP29.png)](https://imgtu.com/i/OlWP29)
+- then we use the command `mvn clean install`, and then, you can see that maven use something called `Reactor` automaticlly know that there is mutiple child projects
 
+[![OlWQxA.png](https://s1.ax1x.com/2022/05/08/OlWQxA.png)](https://imgtu.com/i/OlWQxA)
 
-
-
-
-
-
-
-
+- When you working with mutiple child projects, you may use same dependencies ,like `junit` with different version.
+[![OlWORH.png](https://s1.ax1x.com/2022/05/08/OlWORH.png)](https://imgtu.com/i/OlWORH)
+- we can use `dependencyManagement` tag to manage all the dependencies.
+- create a `dependencyManagement` tag in the root `pom.xml`  file.
+- and move all the `dependencies` into the   `dependencyManagement` tag.
+- what the difference between `dependencyManagement` and `dependencies`, if we leave the `commons-lang` dependency outside the `dependencyManagement` tag, and the rest move into the `dependencyManagement` tag
+[![OlhQBt.png](https://s1.ax1x.com/2022/05/08/OlhQBt.png)](https://imgtu.com/i/OlhQBt)
+- then, open the `pom.xml` file in the `child-project-1` check the dependency tree 
+(if you don't have a the `dependency analyzer` you can search a plugin call `maven helper` in the IntelliJ plugin marketplace)
 
