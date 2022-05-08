@@ -363,3 +363,19 @@ https://downloads.apache.org/maven/maven-3/3.6.3/binaries/
 - then, open the `pom.xml` file in the `child-project-1` check the dependency tree 
 (if you don't have a the `dependency analyzer` you can search a plugin call `maven helper` in the IntelliJ plugin marketplace)
 
+- if i want to use the `junit` dependency in `child-project-3`, we have to manually add ` dependencies` in the `child-project-3`'s `pom.xml` file.
+
+12. **Maven  profiles**
+    - customized the build process
+
+```xml
+    <profiles>
+        <profile>
+            <id>skip-test</id>
+            <properties>
+                <maven.test.skip>ture</maven.test.skip>
+            </properties>
+        </profile>
+    </profiles>
+
+```
